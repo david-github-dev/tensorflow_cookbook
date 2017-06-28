@@ -43,7 +43,7 @@ else:
     z = ZipFile(io.BytesIO(r.content))
     file = z.read('SMSSpamCollection')
     # Format Data
-    text_data = file.decode()
+    text_data = file.decode("utf-8")
     text_data = text_data.encode('ascii',errors='ignore')
     text_data = text_data.decode().split('\n')
     text_data = [x.split('\t') for x in text_data if len(x)>=1]
@@ -90,7 +90,7 @@ vocab_processor.fit_transform(texts)
 embedding_size = len(vocab_processor.vocabulary_)
 
 # Split up data set into train/test
-train_indices = np.random.choice(len(texts), round(len(texts)*0.8), replace=False)
+train_indices = np.random.choice(len(texts), int(round(len(texts)*0.8)), replace=False)
 test_indices = np.array(list(set(range(len(texts))) - set(train_indices)))
 texts_train = [x for ix, x in enumerate(texts) if ix in train_indices]
 texts_test = [x for ix, x in enumerate(texts) if ix in test_indices]

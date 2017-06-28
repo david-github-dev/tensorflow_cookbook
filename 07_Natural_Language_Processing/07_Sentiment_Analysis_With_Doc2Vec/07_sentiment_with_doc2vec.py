@@ -20,7 +20,7 @@ import requests
 import collections
 import io
 import tarfile
-import urllib.request
+#import urllib.request
 import text_helpers
 from nltk.corpus import stopwords
 from tensorflow.python.framework import ops
@@ -64,7 +64,8 @@ valid_words = ['love', 'hate', 'happy', 'sad', 'man', 'woman']
 
 # Load the movie review data
 print('Loading Data')
-texts, target = text_helpers.load_movie_data(data_folder_name)
+#texts, target = text_helpers.load_movie_data(data_folder_name)
+texts, target = text_helpers.load_movie_data()
 
 # Normalize text
 print('Normalizing Text Data')
@@ -185,7 +186,7 @@ logistic_batch_size = 500
 
 # Split dataset into train and test sets
 # Need to keep the indices sorted to keep track of document index
-train_indices = np.sort(np.random.choice(len(target), round(0.8*len(target)), replace=False))
+train_indices = np.sort(np.random.choice(len(target), int(round(0.8*len(target))), replace=False))
 test_indices = np.sort(np.array(list(set(range(len(target))) - set(train_indices))))
 texts_train = [x for ix, x in enumerate(texts) if ix in train_indices]
 texts_test = [x for ix, x in enumerate(texts) if ix in test_indices]

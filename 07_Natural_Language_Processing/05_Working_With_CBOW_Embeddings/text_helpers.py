@@ -5,7 +5,7 @@
 
 import string
 import os
-import urllib.request
+#import urllib.request
 import io
 import tarfile
 import collections

@@ -8,6 +8,8 @@ import tensorflow as tf
 from tensorflow.python.framework import ops
 ops.reset_default_graph()
 
+print "tensorflow version is %s" %tf.VERSION
+
 # Introduce tensors in tf
 
 # Get graph handle

@@ -5,7 +5,7 @@
 
 import string
 import os
-import urllib.request
+#import urllib.request
 import io
 import tarfile
 import collections
@@ -144,16 +144,20 @@ def load_movie_data():
         tar.close()
 
     pos_data = []
-    with open(pos_file, 'r', encoding='latin-1') as f:
+    #with open(pos_file, 'r', encoding='latin-1') as f:
+    with open(pos_file, 'r') as f:
         for line in f:
-            pos_data.append(line.encode('ascii',errors='ignore').decode())
+            pos_data.append(line.decode("latin-1").encode('ascii',errors='ignore').decode()) 
+            #pos_data.append(line.encode('ascii',errors='ignore').decode()) # UnicodeDecodeError: 'utf8' codec can't decode byte 0xf3 in position 47: invalid continuation byte
     f.close()
     pos_data = [x.rstrip() for x in pos_data]
 
     neg_data = []
-    with open(neg_file, 'r', encoding='latin-1') as f:
+    #with open(neg_file, 'r', encoding='latin-1') as f:
+    with open(neg_file, 'r') as f:
         for line in f:
-            neg_data.append(line.encode('ascii',errors='ignore').decode())
+            #neg_data.append(line.encode('ascii',errors='ignore').decode()) # UnicodeDecodeError:
+            neg_data.append(line.decode("latin-1").encode('ascii',errors='ignore').decode())
     f.close()
     neg_data = [x.rstrip() for x in neg_data]
     
